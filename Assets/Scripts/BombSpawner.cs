@@ -13,7 +13,7 @@ public class BombSpawner : MonoBehaviour
     private BoxCollider2D blackCollider;
     private bool spawning;
     public float spawnTimer = 1.5f;
-    public PlayerState player;
+    public GameManager player;
     public int bombCountStart;
     public int bombCount;
 
@@ -24,7 +24,7 @@ public class BombSpawner : MonoBehaviour
 
         pinkCollider = pinkBorder.GetComponent<BoxCollider2D>();
         blackCollider = blackBorder.GetComponent<BoxCollider2D>();
-        player = FindObjectOfType<PlayerState>();
+        player = FindObjectOfType<GameManager>();
 
         StartCoroutine("BombSpawnTimer");
     }

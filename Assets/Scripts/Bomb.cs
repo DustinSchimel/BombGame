@@ -13,7 +13,7 @@ public class Bomb : MonoBehaviour
     private float currentTime;
     private bool beingHeld;
     private bool defused;
-    private PlayerState player;
+    private GameManager player;
     public Animator animator;
 
     // Start is called before the first frame update
@@ -35,7 +35,7 @@ public class Bomb : MonoBehaviour
             if (currentTime >= 8.5f)
             {
                 Destroy(gameObject);
-                //Debug.Log("Lose");
+                player.GameOver();
             }
         }
     }
@@ -75,7 +75,7 @@ public class Bomb : MonoBehaviour
             else if ((isBlackBomb && other == pinkCollider) || (!isBlackBomb && other == blackCollider))
             {
                 Destroy(gameObject);
-                Debug.Log("Lose");
+                player.GameOver();
             }
         }
     }
@@ -91,7 +91,7 @@ public class Bomb : MonoBehaviour
         this.blackCollider = blackCollider;
     }
 
-    public void SetPlayer(PlayerState player)
+    public void SetPlayer(GameManager player)
     {
         this.player = player;
     }
