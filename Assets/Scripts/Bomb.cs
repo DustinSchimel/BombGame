@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using TMPro;
 
 public class Bomb : MonoBehaviour
 {
@@ -15,6 +14,7 @@ public class Bomb : MonoBehaviour
     private bool beingHeld;
     private bool defused;
     private PlayerState player;
+    public Animator animator;
 
     // Start is called before the first frame update
     void Start()
@@ -42,14 +42,11 @@ public class Bomb : MonoBehaviour
 
     private void OnMouseDown() 
     {
-        if (!defused)
-        {
-            beingHeld = true;
-            savedVelocity = rb.velocity;
-            rb.velocity = new Vector2(0f, 0f);
-            difference = (Vector2)Camera.main.ScreenToWorldPoint(Input.mousePosition) - (Vector2)transform.position;
-            gameObject.GetComponent<CircleCollider2D>().enabled = false;
-        }
+        beingHeld = true;
+        savedVelocity = rb.velocity;
+        rb.velocity = new Vector2(0f, 0f);
+        difference = (Vector2)Camera.main.ScreenToWorldPoint(Input.mousePosition) - (Vector2)transform.position;
+        gameObject.GetComponent<CircleCollider2D>().enabled = false;
     }
 
     private void OnMouseDrag()
@@ -70,6 +67,7 @@ public class Bomb : MonoBehaviour
         {
             if ((isBlackBomb && other == blackCollider) || (!isBlackBomb && other == pinkCollider))
             {
+                animator.SetBool("Defused", true);
                 defused = true;
                 player.IncrementScore();
                 gameObject.GetComponent<CircleCollider2D>().enabled = false;
