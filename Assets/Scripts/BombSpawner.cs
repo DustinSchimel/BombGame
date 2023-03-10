@@ -14,6 +14,8 @@ public class BombSpawner : MonoBehaviour
     private bool spawning;
     public float spawnTimer = 1.5f;
     public PlayerState player;
+    public int bombCountStart;
+    public int bombCount;
 
     // Start is called before the first frame update
     void Start()
@@ -53,6 +55,8 @@ public class BombSpawner : MonoBehaviour
         bombObject.GetComponent<Rigidbody2D>().velocity = directions[Random.Range(0, directions.Length)];
         bombScript.SetColliders(pinkCollider, blackCollider);
         bombScript.SetPlayer(player);
+        bombObject.GetComponent<SpriteRenderer>().sortingOrder = bombCount + bombCountStart;
+        bombCount++;
     }
 
     IEnumerator BombSpawnTimer()

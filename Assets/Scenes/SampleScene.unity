@@ -3587,6 +3587,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1365504131}
     - target: {fileID: 1842769169040118298, guid: 9b349be0900d335499955f708149488f, type: 3}
+      propertyPath: bombCountStart
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 1842769169040118298, guid: 9b349be0900d335499955f708149488f, type: 3}
       propertyPath: directions.Array.size
       value: 5
       objectReference: {fileID: 0}
