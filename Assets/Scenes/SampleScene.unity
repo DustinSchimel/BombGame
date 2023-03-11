@@ -4251,6 +4251,7 @@ MonoBehaviour:
   gameOverScreen: {fileID: 1945351954}
   gameoverScoreNumber: {fileID: 1121464901}
   gameoverHighScoreNumber: {fileID: 1404682477}
+  cageMax: 10
 --- !u!4 &1967514585
 Transform:
   m_ObjectHideFlags: 0

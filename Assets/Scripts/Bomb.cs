@@ -20,6 +20,7 @@ public class Bomb : MonoBehaviour
     void Start()
     {
         rb = gameObject.GetComponent<Rigidbody2D>();
+        gameManager.IncrementBombInField(gameObject);
     }
 
     // Update is called once per frame

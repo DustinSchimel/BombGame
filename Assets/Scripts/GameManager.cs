@@ -12,14 +12,17 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject gameOverScreen;
     [SerializeField] private TMP_Text gameoverScoreNumber;
     [SerializeField] private TMP_Text gameoverHighScoreNumber;
-    private int pinkInCage;
-    private int blackInCage;
+    private int bombInFieldCount;
+    private int pinkInCageCount;
+    private int blackInCageCount;
+    private ArrayList bombsInField;
     private ArrayList blackBombsInCage;
     private ArrayList pinkBombsInCage;
     [SerializeField] private int cageMax = 40;
 
     void Start()
     {
+        bombsInField = new ArrayList();
         blackBombsInCage = new ArrayList();
         pinkBombsInCage = new ArrayList();
     }
@@ -34,6 +37,10 @@ public class GameManager : MonoBehaviour
     {
         if (cause == 0) // timeout
         {
+            foreach(GameObject bomb in bombsInField)
+            {
+                Destroy(bomb);
+            }
             foreach(GameObject bomb in blackBombsInCage)
             {
                 IncrementScore();
@@ -47,6 +54,10 @@ public class GameManager : MonoBehaviour
         }
         else if (cause == 1)    // black in pink cage
         {
+            foreach(GameObject bomb in bombsInField)
+            {
+                Destroy(bomb);
+            }
             foreach(GameObject bomb in pinkBombsInCage)
             {
                 Destroy(bomb);
@@ -59,6 +70,10 @@ public class GameManager : MonoBehaviour
         }
         else if (cause == 2)    // pink in black cage
         {
+            foreach(GameObject bomb in bombsInField)
+            {
+                Destroy(bomb);
+            }
             foreach(GameObject bomb in blackBombsInCage)
             {
                 Destroy(bomb);
@@ -93,10 +108,12 @@ public class GameManager : MonoBehaviour
 
     public void IncrementPinkInCage(GameObject pinkBomb)
     {
-        pinkInCage++;
+        pinkInCageCount++;
         pinkBombsInCage.Add(pinkBomb);
+        bombsInField.Remove(pinkBomb);
+        bombInFieldCount--;
 
-        if (pinkInCage == cageMax)
+        if (pinkInCageCount == cageMax)
         {
             foreach(GameObject bomb in pinkBombsInCage)
             {
@@ -104,17 +121,19 @@ public class GameManager : MonoBehaviour
                 Destroy(bomb);
             }
 
-            pinkInCage = 0;
+            pinkInCageCount = 0;
             pinkBombsInCage.Clear();
         }
     }
 
     public void IncrementBlackInCage(GameObject blackBomb)
     {
-        blackInCage++;
+        blackInCageCount++;
         blackBombsInCage.Add(blackBomb);
+        bombsInField.Remove(blackBomb);
+        bombInFieldCount--;
 
-        if (blackInCage == cageMax)
+        if (blackInCageCount == cageMax)
         {
             foreach(GameObject bomb in blackBombsInCage)
             {
@@ -122,8 +141,14 @@ public class GameManager : MonoBehaviour
                 Destroy(bomb);
             }
 
-            blackInCage = 0;
+            blackInCageCount = 0;
             blackBombsInCage.Clear();
         }
+    }
+
+    public void IncrementBombInField(GameObject bomb)
+    {
+        bombInFieldCount++;
+        bombsInField.Add(bomb);
     }
 }
