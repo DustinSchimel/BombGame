@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Bomb : MonoBehaviour
 {
-    private GameManager player;
+    private GameManager gameManager;
     private Rigidbody2D rb;
     [SerializeField] public Animator animator;
     private Vector2 difference;
@@ -32,7 +32,7 @@ public class Bomb : MonoBehaviour
             if (currentTime >= 8.5f)
             {
                 Destroy(gameObject);
-                player.GameOver();
+                gameManager.GameOver(0);    // 0 for timeout
             }
             else if (currentTime >= 7.5f && exploding == false)
             {
@@ -73,13 +73,29 @@ public class Bomb : MonoBehaviour
                 animator.SetBool("Exploding", false);
                 animator.SetBool("Defused", true);
                 defused = true;
-                player.IncrementScore();
                 gameObject.GetComponent<CircleCollider2D>().enabled = false;
+
+                if (isBlackBomb)
+                {
+                    gameManager.IncrementBlackInCage(gameObject);
+                }
+                else
+                {
+                    gameManager.IncrementPinkInCage(gameObject);
+                }
             }
             else if ((isBlackBomb && other == pinkCollider) || (!isBlackBomb && other == blackCollider))
             {
                 Destroy(gameObject);
-                player.GameOver();
+
+                if (isBlackBomb)
+                {
+                    gameManager.GameOver(1);    // black in pink cage, destory all pink
+                }
+                else
+                {
+                    gameManager.GameOver(2);    // pink in black cage, destory all black
+                }
             }
         }
     }
@@ -95,8 +111,8 @@ public class Bomb : MonoBehaviour
         this.blackCollider = blackCollider;
     }
 
-    public void SetPlayer(GameManager player)
+    public void SetPlayer(GameManager gameManager)
     {
-        this.player = player;
+        this.gameManager = gameManager;
     }
 }
