@@ -4,22 +4,17 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-    public int score;
-    public TMP_Text textScore;
-    public GameObject canvas;
-    public GameObject gameOverScreen;
-    public TMP_Text gameoverScoreText;
-    public TMP_Text gameoverHighScoreText;
-
-    void Start()
-    {
-
-    }
+    private int score;
+    [SerializeField] private GameObject canvas;
+    [SerializeField] private TMP_Text scoreNumber;
+    [SerializeField] private GameObject gameOverScreen;
+    [SerializeField] private TMP_Text gameoverScoreNumber;
+    [SerializeField] private TMP_Text gameoverHighScoreNumber;
 
     public void IncrementScore()
     {
         score++;
-        textScore.text = score.ToString();
+        scoreNumber.text = score.ToString();
     }
 
     public void GameOver()
@@ -33,10 +28,10 @@ public class GameManager : MonoBehaviour
         }
 
         Time.timeScale = 0;
-        textScore.enabled = false;
+        scoreNumber.enabled = false;
         gameOverScreen.SetActive(true);
-        gameoverScoreText.text = score.ToString();
-        gameoverHighScoreText.text = highscore.ToString();
+        gameoverScoreNumber.text = score.ToString();
+        gameoverHighScoreNumber.text = highscore.ToString();
     }
 
     public void Restart()

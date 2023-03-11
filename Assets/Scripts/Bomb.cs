@@ -4,28 +4,22 @@ using UnityEngine;
 
 public class Bomb : MonoBehaviour
 {
+    private GameManager player;
     private Rigidbody2D rb;
+    [SerializeField] public Animator animator;
     private Vector2 difference;
     private Vector2 savedVelocity;
-    private bool isBlackBomb;
     private BoxCollider2D pinkCollider;
     private BoxCollider2D blackCollider;
     private float currentTime;
+    private bool exploding;
     private bool beingHeld;
     private bool defused;
-    private GameManager player;
-    public Animator animator;
+    private bool isBlackBomb;
 
-    public bool exploding;
-
-    // Start is called before the first frame update
     void Start()
     {
         rb = gameObject.GetComponent<Rigidbody2D>();
-
-        currentTime = 0;
-        defused = false;
-        exploding = false;
     }
 
     // Update is called once per frame
@@ -69,7 +63,8 @@ public class Bomb : MonoBehaviour
         gameObject.GetComponent<CircleCollider2D>().enabled = true;
     }
 
-    private void OnTriggerStay2D(Collider2D other) 
+    // This was trigger stay before, just in case a bug shows up
+    private void OnTriggerEnter2D(Collider2D other) 
     {
         if (gameObject.GetComponent<CircleCollider2D>().IsTouching(other))
         {

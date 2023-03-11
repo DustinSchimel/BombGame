@@ -1,38 +1,30 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class BombSpawner : MonoBehaviour
 {
-    public GameObject blackBomb;
-    public GameObject pinkBomb;
-    public Vector2[] directions;
-    public GameObject pinkBorder;
-    public GameObject blackBorder;
-    private BoxCollider2D pinkCollider;
-    private BoxCollider2D blackCollider;
+    [SerializeField] private Vector2[] directions;
+    [SerializeField] private GameObject blackBomb;
+    [SerializeField] private GameObject pinkBomb;
+    [SerializeField] private GameObject blackBorder;
+    [SerializeField] private GameObject pinkBorder;
+    private BoxCollider2D blackBorderCollider;
+    private BoxCollider2D pinkBorderCollider;
     private bool spawning;
-    public float spawnTimer = 1.5f;
-    public GameManager player;
-    public int bombCountStart;
-    public int bombCount;
+    [SerializeField] private float spawnTimer = 1.5f;
+    public GameManager gameManager;
+    [SerializeField] private int bombCountStart;
+    private int bombCount;
 
-    // Start is called before the first frame update
     void Start()
     {
         spawning = true;
 
-        pinkCollider = pinkBorder.GetComponent<BoxCollider2D>();
-        blackCollider = blackBorder.GetComponent<BoxCollider2D>();
-        player = FindObjectOfType<GameManager>();
+        pinkBorderCollider = pinkBorder.GetComponent<BoxCollider2D>();
+        blackBorderCollider = blackBorder.GetComponent<BoxCollider2D>();
+        gameManager = FindObjectOfType<GameManager>();
 
         StartCoroutine("BombSpawnTimer");
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 
     void SpawnBomb()
@@ -53,8 +45,8 @@ public class BombSpawner : MonoBehaviour
         }
 
         bombObject.GetComponent<Rigidbody2D>().velocity = directions[Random.Range(0, directions.Length)];
-        bombScript.SetColliders(pinkCollider, blackCollider);
-        bombScript.SetPlayer(player);
+        bombScript.SetColliders(pinkBorderCollider, blackBorderCollider);
+        bombScript.SetPlayer(gameManager);
         bombObject.GetComponent<SpriteRenderer>().sortingOrder = bombCount + bombCountStart;
         bombCount++;
     }
