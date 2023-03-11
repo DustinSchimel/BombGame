@@ -6,7 +6,7 @@ AnimationClip:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: PinkBombDefused
+  m_Name: Pink Bomb Primed
   serializedVersion: 7
   m_Legacy: 0
   m_Compressed: 0
@@ -21,9 +21,9 @@ AnimationClip:
   - serializedVersion: 2
     curve:
     - time: 0
-      value: {fileID: 21300000, guid: a5163bb98f8f5ce4fbfb22b3800187f5, type: 3}
+      value: {fileID: 21300000, guid: 44e6797fadbee8142ad7f673fc8bb52d, type: 3}
     - time: 0.083333336
-      value: {fileID: 21300000, guid: 098d4107d5990054b971828ffb928c32, type: 3}
+      value: {fileID: 21300000, guid: 9f0bf842755eda148924c8f043eea83f, type: 3}
     attribute: m_Sprite
     path: 
     classID: 212
@@ -46,8 +46,8 @@ AnimationClip:
       isIntCurve: 0
       isSerializeReferenceCurve: 0
     pptrCurveMapping:
-    - {fileID: 21300000, guid: a5163bb98f8f5ce4fbfb22b3800187f5, type: 3}
-    - {fileID: 21300000, guid: 098d4107d5990054b971828ffb928c32, type: 3}
+    - {fileID: 21300000, guid: 44e6797fadbee8142ad7f673fc8bb52d, type: 3}
+    - {fileID: 21300000, guid: 9f0bf842755eda148924c8f043eea83f, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}

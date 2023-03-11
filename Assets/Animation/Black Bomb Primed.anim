@@ -6,7 +6,7 @@ AnimationClip:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: BlackBombPrimed
+  m_Name: Black Bomb Primed
   serializedVersion: 7
   m_Legacy: 0
   m_Compressed: 0
@@ -21,9 +21,9 @@ AnimationClip:
   - serializedVersion: 2
     curve:
     - time: 0
-      value: {fileID: 21300000, guid: ad11dc86d2ee4cb4eaef90565cc89ba1, type: 3}
+      value: {fileID: 21300000, guid: 6144811ceb99e3646a579970950a16b1, type: 3}
     - time: 0.083333336
-      value: {fileID: 21300000, guid: 3130cb7a575de9a4bbb18d199ee17cb7, type: 3}
+      value: {fileID: 21300000, guid: 922b4bb23c474c849b3d16240d3bcc16, type: 3}
     attribute: m_Sprite
     path: 
     classID: 212
@@ -46,8 +46,8 @@ AnimationClip:
       isIntCurve: 0
       isSerializeReferenceCurve: 0
     pptrCurveMapping:
-    - {fileID: 21300000, guid: ad11dc86d2ee4cb4eaef90565cc89ba1, type: 3}
-    - {fileID: 21300000, guid: 3130cb7a575de9a4bbb18d199ee17cb7, type: 3}
+    - {fileID: 21300000, guid: 6144811ceb99e3646a579970950a16b1, type: 3}
+    - {fileID: 21300000, guid: 922b4bb23c474c849b3d16240d3bcc16, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}
