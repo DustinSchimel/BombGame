@@ -16,6 +16,8 @@ public class Bomb : MonoBehaviour
     private GameManager player;
     public Animator animator;
 
+    public bool exploding;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -23,6 +25,7 @@ public class Bomb : MonoBehaviour
 
         currentTime = 0;
         defused = false;
+        exploding = false;
     }
 
     // Update is called once per frame
@@ -36,6 +39,11 @@ public class Bomb : MonoBehaviour
             {
                 Destroy(gameObject);
                 player.GameOver();
+            }
+            else if (currentTime >= 7.5f && exploding == false)
+            {
+                exploding = true;
+                animator.SetBool("Exploding", true);
             }
         }
     }
@@ -67,6 +75,7 @@ public class Bomb : MonoBehaviour
         {
             if ((isBlackBomb && other == blackCollider) || (!isBlackBomb && other == pinkCollider))
             {
+                animator.SetBool("Exploding", false);
                 animator.SetBool("Defused", true);
                 defused = true;
                 player.IncrementScore();
