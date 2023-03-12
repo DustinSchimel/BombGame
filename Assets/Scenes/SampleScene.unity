@@ -4526,7 +4526,7 @@ MonoBehaviour:
   cageMax: 10
   leftExitTop: {fileID: 854869058}
   leftExitBottom: {fileID: 1654151338}
-  RightExitTop: {fileID: 1228308733}
+  rightExitTop: {fileID: 1228308733}
   rightExitBottom: {fileID: 1774962804}
 --- !u!4 &1967514585
 Transform:
