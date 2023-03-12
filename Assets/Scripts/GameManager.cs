@@ -19,6 +19,10 @@ public class GameManager : MonoBehaviour
     private ArrayList blackBombsInCage;
     private ArrayList pinkBombsInCage;
     [SerializeField] private int cageMax = 40;
+    [SerializeField] public Animator leftExitTop;
+    [SerializeField] public Animator leftExitBottom;
+    [SerializeField] public Animator rightExitTop;
+    [SerializeField] public Animator rightExitBottom;
 
     void Start()
     {
@@ -115,14 +119,7 @@ public class GameManager : MonoBehaviour
 
         if (pinkInCageCount == cageMax)
         {
-            foreach(GameObject bomb in pinkBombsInCage)
-            {
-                IncrementScore();
-                Destroy(bomb);
-            }
-
-            pinkInCageCount = 0;
-            pinkBombsInCage.Clear();
+            PinkCageOrganize();
         }
     }
 
@@ -135,14 +132,7 @@ public class GameManager : MonoBehaviour
 
         if (blackInCageCount == cageMax)
         {
-            foreach(GameObject bomb in blackBombsInCage)
-            {
-                IncrementScore();
-                Destroy(bomb);
-            }
-
-            blackInCageCount = 0;
-            blackBombsInCage.Clear();
+            BlackCageOrganize();
         }
     }
 
@@ -150,5 +140,39 @@ public class GameManager : MonoBehaviour
     {
         bombInFieldCount++;
         bombsInField.Add(bomb);
+    }
+
+    public void BlackCageOrganize()
+    {
+        rightExitTop.SetBool("closing", false);
+        rightExitBottom.SetBool("closing", false);
+        rightExitTop.SetBool("opening", true);
+        rightExitBottom.SetBool("opening", true);
+
+        foreach(GameObject bomb in blackBombsInCage)
+        {
+            IncrementScore();
+            Destroy(bomb);
+        }
+
+        blackInCageCount = 0;
+        blackBombsInCage.Clear();
+    }
+
+    public void PinkCageOrganize()
+    {
+        leftExitTop.SetBool("closing", false);
+        leftExitBottom.SetBool("closing", false);
+        leftExitTop.SetBool("opening", true);
+        leftExitBottom.SetBool("opening", true);
+
+        foreach(GameObject bomb in pinkBombsInCage)
+        {
+            IncrementScore();
+            Destroy(bomb);
+        }
+
+        pinkInCageCount = 0;
+        pinkBombsInCage.Clear();
     }
 }
